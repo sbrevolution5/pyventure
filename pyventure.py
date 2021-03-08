@@ -65,6 +65,7 @@ def airlock(charName):
 
 def cargoHold(charName):
     print("You arrive in the cargo hold.")
+    print(txt.cargo_text)
 def medbay(charName):
     print("You arrive in the medbay.")
 def escapeHatch(charName):
