@@ -2,12 +2,13 @@
 from sys import exit
 startofgame = True
 inventory = []
+equipped = ["clothes"]
 def charmaker():
     print("What's your name?")
     name = input("> ")
     return name
-def cockpit(charName, firsttime):
-    print(f"You sit in your cockpit, aboard the starship Everess, as it comes out of hyperspace.  You take a second to remember your bearings.  You are {charName}, esteemed captain of the Everess, not that anyone really reports to you, since you are a lone mercenary, sailing the black winds of space, pinpricks of starlight on the horizon.  In the cockpit you see your laser pistol, water bottle, snack stash, Oxygen rebreather, the picture of Becky (your long ago love that you bought the Everess to impress before she.... well... better to focus on you for now....) and emergency flashlight. \n Red lights begin to blink across the console of your ship.  You see your engines begin to fail, oxygen levels dropping, and just before the screen goes blank, you see the characters 'INTRU' crawl across the screen. ")
+def cockpit(charname, firsttime):
+    print(f"You sit in your cockpit, aboard the starship Everess, as it comes out of hyperspace.  You take a second to remember your bearings.  You are {charname}, esteemed captain of the Everess, not that anyone really reports to you, since you are a lone mercenary, sailing the black winds of space, pinpricks of starlight on the horizon.  In the cockpit you see your laser pistol, water bottle, snack stash, Oxygen rebreather, the picture of Becky (your long ago love that you bought the Everess to impress before she.... well... better to focus on you for now....) and emergency flashlight. \n Red lights begin to blink across the console of your ship.  You see your engines begin to fail, oxygen levels dropping, and just before the screen goes blank, you see the characters 'INTRU' crawl across the screen. ")
     print(f"now is the time for action.")
     whatdo(charname, "cockpit")
 
@@ -55,6 +56,11 @@ def armory(charName):
     print("You arrive in the Armory.")
 def airlock(charName):
     print("You arrive in the airlock.")
+    if "oxygen rebreather" not in equipped:
+        dead("You can't breathe outside the ship without your oxygen rebreather, you have suffocated!", charName)
+    else:
+        print("As you push out of the airlock you breathe a sigh of relief that you can breathe through your oxygen rebreather.")
+        
 def cargoHold(charName):
     print("You arrive in the cargo hold.")
 def medbay(charName):
@@ -65,7 +71,28 @@ def escapeHatch(charName):
 def janitorCloset(charName):
     print("You arrive in the Janitor's closet")
 
+# command functions -----------------
+def equip(item, choice, itemalt=None):
+    if item in choice or itemalt in choice:
+        if item not in equipped:
+            if item in inventory:
+                print(f"You have attached your {item} to your helmet, you can now breathe easily")
+                return
+            else:
+                print(f"You don't have {item}")
+                return
+        else:
+            print(f"You have {item} equipped, use 'unequip' to return to inventory")
+            return
 
+def unequip(item, choice, itemalt=None):
+    if item in choice or itemalt in choice:
+        if item in equipped:
+            print(f"You have returned your {item} to your inventory")
+            return
+        else:
+            print(f"You don't have {item} equipped, use 'equip' to retrieve from inventory")
+            return
 # Utility functions ____________
 def whatdo(charname, roomname):
     print(f"What do you do?")
@@ -73,16 +100,26 @@ def whatdo(charname, roomname):
         choice= input("> ")
         if "leave" in choice:
             print("you go into the hallway")
-            hallway(charName)
+            hallway(charname)
         elif "EXIT" in choice or "QUIT" in choice:
             quitter()
+        elif "equip" in choice:
+            if "oxygen" in choice or "rebreather" in choice:
+                if "oxygen rebreather" not in equipped:
+                    if "oxygen rebreather" in inventory:
+                        print("You have attached your oxygen rebreather to your helmet, you can now breathe easily")
+                    else:
+                        print("You don't have an oxygen rebreather")
+                else:
+                    print("You have the rebreather equipped, use 'unequip' to return to inventory")
+
         elif "take" in choice:
             if "laser" in choice or "pistol" in choice:
                 print("You pick up the laser pistol")
                 inventory.append("Laser Pistol")
             if "oxygen" in choice:
                 print("You pick up the Oxygen rebreather")
-                inventory.append("Oxygen Rebreather")
+                inventory.append("oxygen rebreather")
             if "snack" in choice:
                 print("You pick up the Snacks")
                 inventory.append("Snack")
@@ -104,6 +141,7 @@ def whatdo(charname, roomname):
             get_inventory()
         else:
             print("Please input a valid action, type HELP for some examples")
+
 def dead(why,charName):
     print(why, f"  Nice going, but {charName}'s dead!")
     print("GAME OVER")
@@ -111,7 +149,9 @@ def dead(why,charName):
 def get_inventory():
     print("listing inventory")
     print(inventory)
-
+def get_equip():
+    print("Your equipment")
+    print(equipped)
 def help():
     print("If you are given a list of numbers, type in a number to make a choice.  Otherwise, use simple verb-noun commands like 'take flashlight', 'leave cockpit', 'open door' etc. use capital letters to access 'Out of character' functions like HELP, EXIT or INVentory")
     return
