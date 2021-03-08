@@ -1,5 +1,7 @@
 # a space based text adventure
 from sys import exit
+import shipareas
+import flavortext as txt
 startofgame = True
 inventory = []
 equipped = ["clothes"]
@@ -8,12 +10,12 @@ def charmaker():
     name = input("> ")
     return name
 def cockpit(charname, firsttime):
-    print(f"You sit in your cockpit, aboard the starship Everess, as it comes out of hyperspace.  You take a second to remember your bearings.  You are {charname}, esteemed captain of the Everess, not that anyone really reports to you, since you are a lone mercenary, sailing the black winds of space, pinpricks of starlight on the horizon.  In the cockpit you see your laser pistol, water bottle, snack stash, Oxygen rebreather, the picture of Becky (your long ago love that you bought the Everess to impress before she.... well... better to focus on you for now....) and emergency flashlight. \n Red lights begin to blink across the console of your ship.  You see your engines begin to fail, oxygen levels dropping, and just before the screen goes blank, you see the characters 'INTRU' crawl across the screen. ")
+    print(txt.opening_text1, charname, txt.opening_text2)
     print(f"now is the time for action.")
     whatdo(charname, "cockpit")
 
 def hallway(charName):
-    print(f"As {charName}, who is you just in case you forgot, enters the hallway, you remember the general layout.  You can go to the following locations: \n\t(1) Cockpit\n\t(2) Mess Hall\n\t(3) Armory\n\t(4) Airlock \n\t(5) Medbay\n\t(6) Cargo Hold\n\t(7) Escape Hatch\n\t(8) Janitor Closet")
+    print(txt.hall_text1, charName, txt.hall_text2)
     print("Which do you choose?")
     while(True):
         choice = input("> ")
@@ -60,7 +62,7 @@ def airlock(charName):
         dead("You can't breathe outside the ship without your oxygen rebreather, you have suffocated!", charName)
     else:
         print("As you push out of the airlock you breathe a sigh of relief that you can breathe through your oxygen rebreather.")
-        
+
 def cargoHold(charName):
     print("You arrive in the cargo hold.")
 def medbay(charName):
