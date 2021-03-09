@@ -1,0 +1,9 @@
+Objective: Get the ship running again
+Obstacle: There is an alien intruder who is in your ship.  
+Obstacle: The power is out thanks to the alien intrusion
+Obstacle: Without power we cannot get into the armory, where heavier weapons are.
+McGuffin: Where are the power controls?
+McGuffin: Flashlight batteries are in the Cargo hold, but without power we don't know which box they are in.  One of the boxes is dangerous, two are pointless, and the final one is the one with battery powered toys in it.  
+    Puzzle: logic puzzle based on some clues you can find around the ship?
+If power is turned on, Alien will reveal its location
+if power is left off you have less resources but you are able to get the element of surprise
