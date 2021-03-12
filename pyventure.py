@@ -5,6 +5,7 @@ import flavortext as txt
 startofgame = True
 inventory = []
 equipped = ["clothes"]
+power = False #determines whether power is on or off.  
 def charmaker():
     print("What's your name?")
     name = input("> ")
@@ -48,8 +49,8 @@ def hallway(charName):
             escapeHatch(charName)
             return
         if "8" in choice:
-            print("You are headed to the Janitor Closet")
-            janitorCloset(charName)
+            print("You are headed to the maintenance area ")
+            maintenence(charName)
             return
         print("please enter a proper response!")
 def messHall(charName):
@@ -71,8 +72,11 @@ def medbay(charName):
 def escapeHatch(charName):
     print("You arrive in the escape hatch.")
     dead("There isn't air in the escape hatch", charName)
-def janitorCloset(charName):
-    print("You arrive in the Janitor's closet")
+def maintenence(charName):
+    if power:
+        print(txt.maintenence_power)
+    if not power:
+        print(txt.maintenence_no_power)
 
 # command functions -----------------
 def equip(item, choice, itemalt=None):

@@ -2,7 +2,12 @@ Objective: Get the ship running again
 Obstacle: There is an alien intruder who is in your ship.  
 Obstacle: The power is out thanks to the alien intrusion
 Obstacle: Without power we cannot get into the armory, where heavier weapons are.
-McGuffin: Where are the power controls?
+Obstacle: approaching the power controls in the maintenance area maes you realize that the alienmonsterthing is in the way. 
+McGuffin: lure the alien away from the maintenance area. 
+Mcguffin: There is an ipawd (no relation) hooked up to a rechargable speaker in the cafeteria.  Pick which song to play.
+    One of the songs is a real Bop, and you can't stop listening to it.  
+    One of the songs causes fear in the alien, and it will not move from its location. 
+    One of them (maybe a spoken word performance or audiobook) lures the alien in with sounds of its prey.
 McGuffin: Flashlight batteries are in the Cargo hold, but without power we don't know which box they are in.  One of the boxes is dangerous, two are pointless, and the final one is the one with battery powered toys in it.  
     Puzzle: logic puzzle based on some clues you can find around the ship?
 If power is turned on, Alien will reveal its location
