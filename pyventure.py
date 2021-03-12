@@ -1,22 +1,26 @@
 # a space based text adventure
 from sys import exit
 import shipareas
-import flavortext as txt
+from shipflavortext import *
 startofgame = True
 inventory = []
 equipped = ["clothes"]
 power = False #determines whether power is on or off.  
+alienHealth = 5 # Health of alien, if 0, alien is dead
+playerHealth = 1 # You aren't armored
+playerAmmo = 0
+maintenanceDoorOpen = False
 def charmaker():
     print("What's your name?")
     name = input("> ")
     return name
 def cockpit(charname, firsttime):
-    print(txt.opening_text1, charname, txt.opening_text2)
+    print(opening_text1, charname, opening_text2)
     print(f"now is the time for action.")
     whatdo(charname, "cockpit")
 
 def hallway(charName):
-    print(txt.hall_text1, charName, txt.hall_text2)
+    print(hall_text1, charName, hall_text2)
     print("Which do you choose?")
     while(True):
         choice = input("> ")
@@ -66,24 +70,28 @@ def airlock(charName):
 
 def cargoHold(charName):
     print("You arrive in the cargo hold.")
-    print(txt.cargo_text)
+    print(cargo_text)
 def medbay(charName):
     print("You arrive in the medbay.")
 def escapeHatch(charName):
     print("You arrive in the escape hatch.")
     dead("There isn't air in the escape hatch", charName)
-def maintenence(charName):
+def maintenence(charname):
     if power:
-        print(txt.maintenence_power)
+        print(maintenence_power)
+        whatdo(charname, "Maintenance")
     if not power:
-        print(txt.maintenence_no_power)
+        print(maintenence_no_power)
 
 # command functions -----------------
 def equip(item, choice, itemalt=None):
     if item in choice or itemalt in choice:
         if item not in equipped:
             if item in inventory:
-                print(f"You have attached your {item} to your helmet, you can now breathe easily")
+                print(f"You have equipped {item}")
+                if item == "laser pistol":
+                    playerAmmo = 2
+                    print(f"Your gun has {playerAmmo} shots remaining, ")
                 return
             else:
                 print(f"You don't have {item}")
@@ -108,6 +116,7 @@ def whatdo(charname, roomname):
         if "leave" in choice:
             print("you go into the hallway")
             hallway(charname)
+            return
         elif "EXIT" in choice or "QUIT" in choice:
             quitter()
         elif "equip" in choice:
@@ -142,6 +151,10 @@ def whatdo(charname, roomname):
             if "water" in choice:
                 print("You pick up the water bottle")
                 inventory.append("water bottle")
+            if "open door" in choice and roomname == "Maintenance" and maintenanceDoorOpen == False:
+                print(maintenence_door_powerless)
+                maintenanceDoorOpen = True
+                whatdo(charname, "Maintenance")
         elif "HELP" in choice:
             help()
         elif "INV" in choice:
