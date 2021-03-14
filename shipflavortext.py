@@ -6,7 +6,9 @@ opening_text2 = ", esteemed captain of the Everess, not that anyone really repor
 #Hallway
 hall_text1 = "As" 
 hall_text2 = ", who is you just in case you forgot, enters the hallway, you remember the general layout.  You can go to the following locations: \n\t(1) Cockpit\n\t(2) Mess Hall\n\t(3) Armory\n\t(4) Airlock \n\t(5) Medbay\n\t(6) Cargo Hold\n\t(7) Escape Hatch\n\t(8) Maintenence area"
-#Mess Hall
+# Mess Hall
+mess_hall_1 = "You enter the mess hall, empty as usual.  You wonder why you've got a large mess hall when its usually just you aboard the ship, but beggars can't really be choosers.  in the kitchen there's a knife, and a general set of cooking implements.  The old iPawed in the hall has a few tracks on it, and the speaker is battery powered and quite loud."
+ipawed_text_init = "As you check the ipad, you have 3 options \n\t(1) classic dubstep from the early 2000s \n\t(2)Screechy space rock that will terrify most things\n\t(3) a calm audiobook aobut the life and times of Charles Dickens.  \n\t(0) you can also play nothing and back away"
 # Armory
 # Airlock
 # Medbay

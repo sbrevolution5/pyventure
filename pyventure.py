@@ -59,6 +59,8 @@ def hallway(charName):
         print("please enter a proper response!")
 def messHall(charName):
     print("You arrive in the mess hall.")
+    print(mess_hall_1)
+    whatdo(charName)
 def armory(charName):
     print("You arrive in the Armory.")
 def airlock(charName):
@@ -129,7 +131,24 @@ def whatdo(charname, roomname):
                 else:
                     print("You have the rebreather equipped, use 'unequip' to return to inventory")
 
-        elif "take" in choice:
+        
+        if "open door" in choice and roomname == "Maintenance" and maintenanceDoorOpen == False:
+            print(maintenence_door_powerless)
+            maintenanceDoorOpen = True
+            whatdo(charname, "Maintenance")
+        elif "HELP" in choice:
+            help()
+        elif "INV" in choice:
+            get_inventory()
+        else:
+            # possible room specific command, or it doesn't return any of those?
+            # do with if switch statement.
+            if roomname=="cockpit":
+                do_cockpit(choice)
+            else:
+                print("Please input a valid action, type HELP for some examples")
+def do_cockpit(choice):
+    if "take" in choice:
             if "laser" in choice or "pistol" in choice:
                 print("You pick up the laser pistol")
                 inventory.append("Laser Pistol")
@@ -151,17 +170,8 @@ def whatdo(charname, roomname):
             if "water" in choice:
                 print("You pick up the water bottle")
                 inventory.append("water bottle")
-            if "open door" in choice and roomname == "Maintenance" and maintenanceDoorOpen == False:
-                print(maintenence_door_powerless)
-                maintenanceDoorOpen = True
-                whatdo(charname, "Maintenance")
-        elif "HELP" in choice:
-            help()
-        elif "INV" in choice:
-            get_inventory()
-        else:
-            print("Please input a valid action, type HELP for some examples")
-
+    else:
+        print("Please input a valid action, type HELP for some examples")
 def dead(why,charName):
     print(why, f"  Nice going, but {charName}'s dead!")
     print("GAME OVER")
