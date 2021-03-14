@@ -56,6 +56,10 @@ def hallway(charName):
             print("You are headed to the maintenance area ")
             maintenence(charName)
             return
+        if "9" in choice:
+            print("You are headed to the engine room ")
+            engines(charName)
+            return
         print("please enter a proper response!")
 def messHall(charName):
     print("You arrive in the mess hall.")
@@ -84,7 +88,8 @@ def maintenence(charname):
         whatdo(charname, "Maintenance")
     if not power:
         print(maintenence_no_power)
-
+def engines(charname):
+    print("You arrive in the engine room")
 # command functions -----------------
 def equip(item, choice, itemalt=None):
     if item in choice or itemalt in choice:
