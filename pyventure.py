@@ -10,6 +10,7 @@ alienHealth = 5 # Health of alien, if 0, alien is dead
 playerHealth = 1 # You aren't armored
 playerAmmo = 0
 maintenanceDoorOpen = False
+ipawed_playing = None
 def charmaker():
     print("What's your name?")
     name = input("> ")
@@ -64,7 +65,7 @@ def hallway(charName):
 def messHall(charName):
     print("You arrive in the mess hall.")
     print(mess_hall_1)
-    whatdo(charName)
+    whatdo(charName, "messHall")
 def armory(charName):
     print("You arrive in the Armory.")
 def airlock(charName):
@@ -177,6 +178,32 @@ def do_cockpit(choice):
                 inventory.append("water bottle")
     else:
         print("Please input a valid action, type HELP for some examples")
+def do_mess(choice):
+    if "use ipawed" in choice:
+        print(ipawed_text_init)
+        pawed_chooser()
+    else:
+        print("Please input a valid action, type HELP for some examples")
+def pawed_chooser():
+    while(True):
+        choice= input("> ")
+        if '1' in choice:
+            print("You play some dubstep, which you can't resist.....dancing to, at least it feels like its supposed to be dancing, which you continue until the ....music (?) stops")
+            ipawed_playing = None
+            return
+        if '2' in choice:
+            print("You hear an awful screeching noise that begins to sound harmonious, but across the ship you hear a scream of terror from something, somehow more awful than the noises coming from the iPawed")
+            ipawed_playing = "Screechy"
+            return
+        if '3' in choice:
+            print("Sir Thomas Whittleby's voice comes over the speakers, telling you of the life and times of Charles Dickens.")
+            ipawed_playing = "Dickens"
+            return
+        if '0' in choice:
+            print("You play nothing and step away")
+            return
+        else:
+            print("please input a valid choice(0 will cancel choosing")
 def dead(why,charName):
     print(why, f"  Nice going, but {charName}'s dead!")
     print("GAME OVER")
